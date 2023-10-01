@@ -19,23 +19,21 @@ export default async function Home() {
   console.log(posts.length);
 
   return (
-    <main className='max-w-5xl mx-auto'>
-      <nav className='flex flex-row justify-between'>
-        <h1>This is my blog.</h1>
-        <div className='flex flex-col'>
-          <div>Social media stuff</div>
-          <div className='flex flex-row gap-5'>
-            <div>About me</div>
-            <div>Give me money</div>
-          </div>
-        </div>
-      </nav>
-      <section>
-        <h1>Blog</h1>
+    <main className='flex flex-col min-h-screen'>
+      <section className='py-10'>
+        <h1 className='text-5xl pb-5'>Blog</h1>
         <ul>
           {posts.map((post) => (
-            <li key={post._id}>
-              <a href={post?.slug.current}>{post?.title}</a>
+            <li
+              key={post._id}
+              className='py-5 border-b-2 border-gray-200 border-opacity-20'
+            >
+              <a
+                href={'blog/' + post?.slug.current}
+                className='text-2xl hover:italic'
+              >
+                {post?.title}
+              </a>
               <div className='w-10 h-10'>
                 <PortableText
                   value={post.mainImage}
@@ -46,9 +44,6 @@ export default async function Home() {
           ))}
         </ul>
       </section>
-      <footer className=''>
-        <div>Useless stuff you put in your footer</div>
-      </footer>
     </main>
   );
 }

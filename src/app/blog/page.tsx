@@ -14,8 +14,6 @@ type Post = {
 export default async function PostIndex() {
   const posts = await client.fetch<Post[]>(`*[_type == "post"]`);
 
-  console.log(posts);
-
   return (
     <ul>
       {posts.map((post) => (
