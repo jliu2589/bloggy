@@ -17,13 +17,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className='max-w-5xl mx-auto'>
+      <body className='max-w-5xl mx-auto flex flex-col min-h-screen'>
         <header className='flex justify-between items-center h-20 max-w-5xl'>
           <Link href='/'>my blog</Link>
           <div>give me money</div>
         </header>
         {children}
-        <Footer />
+        <footer className=' bottom-0 left-0 right-0 flex justify-center py-10'>
+          <div>Copyright Jay</div>
+        </footer>
       </body>
     </html>
   );

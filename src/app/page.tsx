@@ -16,12 +16,12 @@ type Post = {
 };
 
 export default async function Home() {
-  const posts = await client.fetch<Post[]>(`*[_type=='post']`);
+  const posts = await client.fetch<Post[]>(`*[_type == 'post']`);
 
   console.log(posts.length);
 
   return (
-    <main className='flex flex-col min-h-screen'>
+    <main className='flex-grow'>
       <section className='py-10'>
         <div className='grid grid-cols-1 md:grid-cols-2 px-10 gap-10 gap-y-16'>
           {posts.map((post) => (
@@ -36,7 +36,9 @@ export default async function Home() {
                   />
                   <div className='absolute bottom-0 w-full bg-opacity-20 bg-black background-blur-lg rounded drop-shadow-lg text-white p-5 flex justify-between'>
                     <div className=''>
-                      <p>{post.title}</p>
+                      <p className='text-3xl font-bold line-clamp-1'>
+                        {post.title}
+                      </p>
                       <p>
                         {new Date(post._createdAt).toLocaleDateString('en-US', {
                           day: 'numeric',
