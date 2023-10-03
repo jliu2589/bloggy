@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { client } from '../../sanity/client';
 import { PortableText } from '@portabletext/react';
 import { RichTextComponents } from '../../RichTextComponents';
+import Link from 'next/link';
+import { urlForImage } from '../../sanity/lib/image';
 
 type Post = {
   _id: string;
@@ -21,28 +23,34 @@ export default async function Home() {
   return (
     <main className='flex flex-col min-h-screen'>
       <section className='py-10'>
-        <h1 className='text-5xl pb-5'>Blog</h1>
-        <ul>
+        <div className='grid grid-cols-1 md:grid-cols-2 px-10 gap-10 gap-y-16'>
           {posts.map((post) => (
-            <li
-              key={post._id}
-              className='py-5 border-b-2 border-gray-200 border-opacity-20'
-            >
-              <a
-                href={'blog/' + post?.slug.current}
-                className='text-2xl hover:italic'
-              >
-                {post?.title}
-              </a>
-              <div className='w-10 h-10'>
-                <PortableText
-                  value={post.mainImage}
-                  components={RichTextComponents}
-                />
+            <Link href={'blog/' + post?.slug.current} key={post._id}>
+              <div className='py-5 flex flex-col cursor-pointer group'>
+                <div className='relative w-full h-80 drop-shadow-xl group-hover:scale-105 transition-transform duration-200 ease-out'>
+                  <Image
+                    src={urlForImage(post.mainImage).url()}
+                    alt={post.title}
+                    className='object-cover object-left lg:object-center'
+                    fill
+                  />
+                  <div className='absolute bottom-0 w-full bg-opacity-20 bg-black background-blur-lg rounded drop-shadow-lg text-white p-5 flex justify-between'>
+                    <div className=''>
+                      <p>{post.title}</p>
+                      <p>
+                        {new Date(post._createdAt).toLocaleDateString('en-US', {
+                          day: 'numeric',
+                          month: 'long',
+                          year: 'numeric',
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </li>
+            </Link>
           ))}
-        </ul>
+        </div>
       </section>
     </main>
   );

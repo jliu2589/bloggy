@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className='max-w-5xl mx-auto'>
-        <Header />
+        <header className='flex justify-between items-center h-20 max-w-5xl'>
+          <Link href='/'>my blog</Link>
+          <div>give me money</div>
+        </header>
         {children}
         <Footer />
       </body>
