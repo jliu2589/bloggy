@@ -4,6 +4,13 @@ import { Inter } from 'next/font/google';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
+import {
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaSquareXTwitter,
+} from 'react-icons/fa6';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,8 +26,44 @@ export default function RootLayout({
     <html lang='en'>
       <body className='max-w-5xl mx-auto flex flex-col min-h-screen'>
         <header className='flex justify-between items-center h-20 max-w-5xl'>
-          <Link href='/'>my blog</Link>
-          <div>give me money</div>
+          <div className=' w-full h-full py-4 pl-10'>
+            <Link href='/'>
+              <Image
+                src='/Casual_Observer.jpg'
+                alt='casual observer'
+                width={100}
+                height={100}
+                className='object-contain'
+              />
+            </Link>
+          </div>
+
+          <div className='flex gap-4 h-full w-full justify-end items-end'>
+            <a href='https://www.facebook.com/jason.liu.969300'>
+              <FaFacebook
+                style={{ fontSize: '24px' }}
+                className='transform scale-100 hover:cursor-pointer hover:scale-110 transition-transform duration-300 ease-in-out'
+              />
+            </a>
+            <a href='https://www.instagram.com/jliu2589/'>
+              <FaInstagram
+                style={{ fontSize: '24px' }}
+                className='transform scale-100 hover:cursor-pointer hover:scale-110 transition-transform duration-300 ease-in-out'
+              />
+            </a>
+            <a href='https://twitter.com/jliu2589'>
+              <FaSquareXTwitter
+                style={{ fontSize: '24px' }}
+                className='transform scale-100 hover:cursor-pointer hover:scale-110 transition-transform duration-300 ease-in-out'
+              />
+            </a>
+            <a href='https://github.com/jliu2589'>
+              <FaGithub
+                style={{ fontSize: '24px' }}
+                className='transform scale-100 hover:cursor-pointer hover:scale-110 transition-transform duration-300 ease-in-out'
+              />
+            </a>
+          </div>
         </header>
         {children}
         <footer className=' bottom-0 left-0 right-0 flex justify-center py-10'>
