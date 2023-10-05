@@ -4,6 +4,7 @@ import { PortableText } from '@portabletext/react';
 import { RichTextComponents } from '../../RichTextComponents';
 import Link from 'next/link';
 import { urlForImage } from '../../sanity/lib/image';
+import { ClerkProvider } from '@clerk/nextjs';
 
 type Post = {
   _id: string;
@@ -17,8 +18,6 @@ type Post = {
 
 export default async function Home() {
   const posts = await client.fetch<Post[]>(`*[_type == 'post']`);
-
-  console.log(posts.length);
 
   return (
     <main className='flex-grow'>
